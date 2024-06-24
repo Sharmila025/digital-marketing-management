@@ -1,0 +1,90 @@
+// User class to represent each user with a unique ID and password
+class User {
+    private int userId;
+    private String password;
+
+    public User(int userId, String password) {
+        this.userId = userId;
+        this.password = password;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+}
+
+// Category interface to define common operations for each category
+interface Category {
+    void addMember();  // Example method for adding a member to the category
+    // Add more methods as needed for category-specific functionalities
+}
+
+// Example implementation of a Customer category
+class CustomerCategory implements Category {
+    // Implement methods specific to customer category
+    @Override
+    public void addMember() {
+        // Logic to add a customer member
+        System.out.println("Customer member added.");
+    }
+
+    // Add more methods specific to customer category
+    public void viewCustomerDetails() {
+        // Logic to view customer details
+        System.out.println("Viewing customer details.");
+    }
+}
+
+// Example implementation of a Product category
+class ProductCategory implements Category {
+    private String productName;
+
+    @Override
+    public void addMember() {
+        // Logic to add a product member
+        System.out.println("Product member added.");
+    }
+
+    // Method to add a specific product
+    public void addProduct(String productName) {
+        this.productName = productName;
+        System.out.println("Product added: " + productName);
+    }
+
+    // Method to view product details
+    public void viewProductDetails() {
+        if (productName != null) {
+            System.out.println("Viewing product details for: " + productName);
+        } else {
+            System.out.println("No product details available.");
+        }
+    }
+}
+
+// Example of a main class to demonstrate usage
+public class Main {
+    public static void main(String[] args) {
+        // Example usage
+        User user1 = new User(1, "password1");
+        User user2 = new User(2, "password2");
+
+        // Creating instances of different categories
+        CustomerCategory customerCategory = new CustomerCategory();
+        ProductCategory productCategory = new ProductCategory();
+
+        // Adding members to respective categories
+        customerCategory.addMember();
+        productCategory.addMember();
+
+        // Adding and viewing specific products
+        productCategory.addProduct("Laptop");
+        productCategory.viewProductDetails();
+
+        // Accessing specific functionalities of each category
+        customerCategory.viewCustomerDetails();
+    }
+}
